@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<?php $this->load->view('partials/head'); ?>
+</head>
+<body>
+	<div class="container">
+	<?php $this->load->view('partials/menu'); ?>
+	<h2>Daftar Artikel Saya</h2>
+	<a href="<?php echo site_url('artikel/add'); ?>">Tambah Artikel</a>
+	<table class="table table-striped">
+		<thead>
+		<tr>
+			<th>No.</th>
+			<th>Judul</th>
+			<th>Author</th>
+			<th>Aksi</th>
+		</tr>
+		</thead>
+		<tbody>
+		<?php
+			if(count($artikel_data) > 0){
+				foreach($artikel_data as $key => $artikel){
+					?>
+					<tr>
+						<td><?php echo $key + 1; ?></td>
+						<td><?php echo $artikel['judul_artikel']; ?></td>
+						<td><?php echo $artikel['author_artikel']; ?></td>
+						<td>
+							<a href="<?php echo site_url('artikel/update/'.$artikel['id_artikel']); ?>" class="btn btn-sm btn-primary" role="button">Update</a>
+							<a href="<?php echo site_url('artikel/delete/'.$artikel['id_artikel']); ?>" class="btn btn-sm btn-danger" role="button">Update</a>
+						</td>
+					</tr>
+					<?php
+				}
+			}else{
+				?>
+				<tr>
+					<td colspan="4">Tidak ada artikel.</td>
+				</tr>
+				<?php
+			}
+		?>
+		</tbody>
+	</table>
+	</div>
+	<?php $this->load->view('partials/foot'); ?>
+</body>
+</html>
